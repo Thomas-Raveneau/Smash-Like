@@ -6,20 +6,20 @@
 script = ExtResource( 1 )
 
 [node name="ButtonHost" type="Button" parent="."]
-margin_left = 389.93
-margin_top = 150.147
-margin_right = 509.93
-margin_bottom = 202.147
+margin_left = 436.93
+margin_top = 179.147
+margin_right = 556.93
+margin_bottom = 231.147
 text = "Host"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ButtonJoin" type="Button" parent="."]
-margin_left = 390.833
-margin_top = 241.3
-margin_right = 510.833
-margin_bottom = 293.3
+margin_left = 435.833
+margin_top = 291.3
+margin_right = 555.833
+margin_bottom = 343.3
 text = "Join"
 __meta__ = {
 "_edit_use_anchors_": false
