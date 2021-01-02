@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/Lobby.gd" type="Script" id=1]
+
+[node name="Lobby" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="ButtonHost" type="Button" parent="."]
+margin_left = 389.93
+margin_top = 150.147
+margin_right = 509.93
+margin_bottom = 202.147
+text = "Host"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonJoin" type="Button" parent="."]
+margin_left = 390.833
+margin_top = 241.3
+margin_right = 510.833
+margin_bottom = 293.3
+text = "Join"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="ButtonHost" to="." method="_on_ButtonHost_pressed"]
+[connection signal="pressed" from="ButtonJoin" to="." method="_on_ButtonJoin_pressed"]

@@ -16,7 +16,12 @@ _global_script_class_icons={
 [application]
 
 config/name="Smash Like"
+run/main_scene="res://Scenes/Menu/Menu.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Globals="*res://Scripts/globals.gd"
 
 [rendering]
 
