@@ -11,14 +11,29 @@ const SIDING_CHANGE_SPEED = 10
 var linear_vel = Vector2()
 var onair_time = 0
 var on_floor = false
+var attacking = false
 
 onready var sprite = $AnimatedSprite
 var anim = ""
-puppet var slave_anim = "idle"
+puppet var slave_anim = "Idle"
+
+func _ready():
+	sprite.connect("animation_finished", self, "attack_finished")
 
 puppet func set_pos_and_motion(p_pos, p_motion):
 	position = p_pos
 	linear_vel = p_motion
+	
+sync func attack():
+	if attacking == true:
+		return
+	attacking = true
+	anim = "Attack"
+	sprite.play(anim)
+
+
+func attack_finished():
+	attacking = false
 
 func _physics_process(delta):
 	onair_time += delta
@@ -45,8 +60,11 @@ func _physics_process(delta):
 
 		if on_floor and Input.is_action_just_pressed("jump"):
 			linear_vel.y = -JUMP_SPEED
+			
+		if Input.is_action_just_pressed("attack"):
+			rpc("attack")
 	
-		rpc("set_pos_and_motion", position, linear_vel)
+		rpc_unreliable("set_pos_and_motion", position, linear_vel)
 	
 	var new_anim = "Idle"
 	
@@ -69,6 +87,6 @@ func _physics_process(delta):
 		else:
 			new_anim = "Fall"
 	
-	if new_anim != anim:
+	if new_anim != anim and attacking == false:
 		anim = new_anim
 		sprite.play(anim)
