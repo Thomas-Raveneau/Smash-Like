@@ -37,10 +37,9 @@ __meta__ = {
 margin_left = 320.0
 margin_top = 96.0
 margin_right = 960.0
-margin_bottom = 480.0
+margin_bottom = 576.0
 custom_styles/panel = SubResource( 1 )
 __meta__ = {
-"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -75,6 +74,17 @@ margin_right = 560.0
 margin_bottom = 352.0
 custom_fonts/font = SubResource( 4 )
 text = "Join"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Test" type="Button" parent="Panel"]
+margin_left = 240.0
+margin_top = 424.0
+margin_right = 416.0
+margin_bottom = 480.0
+custom_fonts/font = SubResource( 3 )
+text = "Test"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -135,3 +145,4 @@ __meta__ = {
 }
 [connection signal="pressed" from="Panel/Host" to="." method="_on_Host_pressed"]
 [connection signal="pressed" from="Panel/Join" to="." method="_on_Join_pressed"]
+[connection signal="pressed" from="Panel/Test" to="." method="_on_Test_pressed"]

@@ -1,6 +1,7 @@
 extends Control
 
 const DEFAULT_PORT = 6969
+const DEV_PORT = 4269
 
 func _ready():
 # warning-ignore:return_value_discarded
@@ -93,3 +94,19 @@ func _on_Join_pressed():
 	get_tree().set_network_peer(host)
 	
 	_set_status("Connecting...",true)
+
+
+func _on_Test_pressed():
+	var host = NetworkedMultiplayerENet.new()
+	host.set_compression_mode(NetworkedMultiplayerENet.COMPRESS_RANGE_CODER)
+	var err = host.create_server(DEV_PORT, 1)
+	if (err != OK):
+		_set_status("Can't host, address already in use.",false)
+		return
+	
+	get_tree().set_network_peer(host)
+	
+	var stage = load("res://Scenes/Stages/TestStage/Stage.tscn").instance()
+	
+	get_tree().get_root().add_child(stage)
+	hide()
