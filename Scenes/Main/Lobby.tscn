@@ -1,0 +1,133 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Ressources/Fonts/04B_30__.TTF" type="DynamicFontData" id=1]
+[ext_resource path="res://Ressources/Fonts/Early GameBoy.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scenes/Main/Lobby.gd" type="Script" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="DynamicFont" id=2]
+size = 68
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=5]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=6]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=7]
+font_data = ExtResource( 2 )
+
+[node name="Lobby" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+margin_left = 320.0
+margin_top = 128.0
+margin_right = 960.0
+margin_bottom = 512.0
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="Panel"]
+margin_left = 72.0
+margin_top = 32.0
+margin_right = 568.0
+margin_bottom = 100.0
+custom_fonts/font = SubResource( 2 )
+text = "SmashLike"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Host" type="Button" parent="Panel"]
+margin_left = 80.0
+margin_top = 296.0
+margin_right = 256.0
+margin_bottom = 352.0
+custom_fonts/font = SubResource( 3 )
+text = "Host"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Join" type="Button" parent="Panel"]
+margin_left = 384.0
+margin_top = 296.0
+margin_right = 560.0
+margin_bottom = 352.0
+custom_fonts/font = SubResource( 4 )
+text = "Join"
+
+[node name="Label" type="Label" parent="Panel"]
+margin_left = 80.0
+margin_top = 176.0
+margin_right = 224.0
+margin_bottom = 208.0
+custom_fonts/font = SubResource( 5 )
+text = "Address:"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Address" type="LineEdit" parent="Panel/Label"]
+anchor_left = -0.25
+anchor_top = -3.25
+anchor_right = -0.25
+anchor_bottom = -3.25
+margin_left = 196.0
+margin_top = 104.0
+margin_right = 516.0
+margin_bottom = 134.0
+custom_fonts/font = SubResource( 6 )
+text = "127.0.0.1"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Error" type="Label" parent="Panel"]
+margin_left = 8.0
+margin_top = 232.0
+margin_right = 632.0
+margin_bottom = 272.0
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0.890196, 0.235294, 0.235294, 1 )
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Status" type="Label" parent="Panel"]
+margin_left = 8.0
+margin_top = 232.0
+margin_right = 632.0
+margin_bottom = 272.0
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0.215686, 0.815686, 0.0901961, 1 )
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Panel/Host" to="." method="_on_Host_pressed"]
+[connection signal="pressed" from="Panel/Join" to="." method="_on_Join_pressed"]
