@@ -46,7 +46,7 @@ func _physics_process(delta):
 		if on_floor and Input.is_action_just_pressed("jump"):
 			linear_vel.y = -JUMP_SPEED
 	
-		rpc("set_pos_and_motion", position, linear_vel)
+		rpc_unreliable("set_pos_and_motion", position, linear_vel)
 	
 	var new_anim = "Idle"
 	
