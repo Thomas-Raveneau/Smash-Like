@@ -6,12 +6,17 @@ const SLOPE_SLIDE_STOP = 25.0
 const MIN_ONAIR_TIME = 0.1
 const WALK_SPEED = 250 # pixels/sec
 const JUMP_SPEED = 480
+const SIDING_CHANGE_SPEED = 10
 
 var linear_vel = Vector2()
 var onair_time = 0
 var on_floor = false
 
-slave func set_pos_and_motion(p_pos, p_motion):
+onready var sprite = $AnimatedSprite
+var anim = ""
+puppet var slave_anim = "idle"
+
+puppet func set_pos_and_motion(p_pos, p_motion):
 	position = p_pos
 	linear_vel = p_motion
 
@@ -34,7 +39,7 @@ func _physics_process(delta):
 			target_speed += -1
 		if Input.is_action_pressed("move_right"):
 			target_speed +=  1
-	
+		
 		target_speed *= WALK_SPEED
 		linear_vel.x = lerp(linear_vel.x, target_speed, 0.1)
 
@@ -42,3 +47,28 @@ func _physics_process(delta):
 			linear_vel.y = -JUMP_SPEED
 	
 		rpc("set_pos_and_motion", position, linear_vel)
+	
+	var new_anim = "Idle"
+	
+	if on_floor:
+		if linear_vel.x < -SIDING_CHANGE_SPEED:
+			sprite.flip_h = true
+			new_anim = "Run"
+
+		if linear_vel.x > SIDING_CHANGE_SPEED:
+			sprite.flip_h = false
+			new_anim = "Run"
+	else:
+		if linear_vel.x < -SIDING_CHANGE_SPEED:
+			sprite.flip_h = true
+		if linear_vel.x > SIDING_CHANGE_SPEED:
+			sprite.flip_h = false
+
+		if linear_vel.y < 0:
+			new_anim = "Jump"
+		else:
+			new_anim = "Fall"
+	
+	if new_anim != anim:
+		anim = new_anim
+		sprite.play(anim)

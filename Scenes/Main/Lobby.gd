@@ -4,18 +4,25 @@ const DEFAULT_PORT = 6969
 const DEV_PORT = 4269
 
 func _ready():
+# warning-ignore:return_value_discarded
 	get_tree().connect("network_peer_connected", self, "_player_connected")
+# warning-ignore:return_value_discarded
 	get_tree().connect("network_peer_disconnected", self, "_player_disconnected")
+# warning-ignore:return_value_discarded
 	get_tree().connect("connected_to_server", self, "_connected_ok")
+# warning-ignore:return_value_discarded
 	get_tree().connect("connection_failed", self, "_connected_fail")
+# warning-ignore:return_value_discarded
 	get_tree().connect("server_disconnected", self, "_server_disconnected")
 
+# warning-ignore:unused_argument
 func _player_connected(id):
 	var stage = load("res://Scenes/Stages/Stage1/Stage.tscn").instance()
 	
 	get_tree().get_root().add_child(stage)
 	hide()
 
+# warning-ignore:unused_argument
 func _player_disconnected(id):
 	if (get_tree().is_network_server()):
 		_end_game("Client disconnected.")
