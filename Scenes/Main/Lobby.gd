@@ -9,16 +9,12 @@ func _ready():
 	get_tree().connect("connection_failed", self, "_connected_fail")
 	get_tree().connect("server_disconnected", self, "_server_disconnected")
 
-# callback from SceneTree
 func _player_connected(id):
 	var stage = load("res://Scenes/Stages/Stage1/Stage.tscn").instance()
-	stage.connect("game_finished", self, "_end_game", [], CONNECT_DEFERRED) # connect deferred so we can safely erase it from the callback
-	
 	get_tree().get_root().add_child(stage)
 	hide()
 
 func _player_disconnected(id):
-	
 	if (get_tree().is_network_server()):
 		_end_game("Client disconnected.")
 	else:
@@ -27,12 +23,10 @@ func _player_disconnected(id):
 func _connected_ok():
 	pass
 
-# callback from SceneTree, only for clients (not server)	
 func _connected_fail():
-
 	_set_status("Couldn't connect.", false)
 	
-	get_tree().set_network_peer(null) #remove peer
+	get_tree().set_network_peer(null)
 	
 	get_node("Panel/Join").set_disabled(false)
 	get_node("Panel/Host").set_disabled(false)
@@ -44,10 +38,10 @@ func _server_disconnected():
 
 func _end_game(with_error=""):
 	if (has_node("/root/Stage")):
-		get_node("/root/Stage").free() # erase immediately, otherwise network might show errors (this is why we connected deferred above)
+		get_node("/root/Stage").queue_free()
 		show()
 	
-	get_tree().set_network_peer(null) #remove peer
+	get_tree().set_network_peer(null)
 	
 	get_node("Panel/Join").set_disabled(false)
 	get_node("Panel/Host").set_disabled(false)
@@ -69,11 +63,11 @@ func _on_Host_pressed():
 	host.set_compression_mode(NetworkedMultiplayerENet.COMPRESS_RANGE_CODER)
 	var err = host.create_server(DEFAULT_PORT, 1)
 	if (err != OK):
-		#is another server running?
 		_set_status("Can't host, address already in use.",false)
 		return
 	
 	get_tree().set_network_peer(host)
+	
 	get_node("Panel/Join").set_disabled(true)
 	get_node("Panel/Host").set_disabled(true)
 	_set_status("Waiting for player 2...", true)
