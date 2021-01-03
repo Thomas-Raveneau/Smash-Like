@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Ressources/Tilesets/ground.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Stages/Stage1/Stage.gd" type="Script" id=3]
+[ext_resource path="res://Ressources/Backgrounds/background_1.png" type="Texture" id=4]
+[ext_resource path="res://Ressources/Backgrounds/background_2.png" type="Texture" id=5]
+[ext_resource path="res://Ressources/Backgrounds/background_0.png" type="Texture" id=6]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
@@ -32,6 +35,30 @@ points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
 
 [node name="Stage" type="Node2D"]
 script = ExtResource( 3 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+follow_viewport_enable = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="background_0" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 640, 359 )
+scale = Vector2( 4.44444, 4.01111 )
+texture = ExtResource( 6 )
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="background_1" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2( 640, 359 )
+scale = Vector2( 4.44444, 4.01111 )
+texture = ExtResource( 4 )
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="background_2" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
+position = Vector2( 640, 359 )
+scale = Vector2( 4.44444, 4.01111 )
+texture = ExtResource( 5 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 2 )
