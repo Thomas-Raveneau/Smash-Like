@@ -15,7 +15,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="2D Multiplayer Gdscript"
+config/name="Smash-Like"
 run/main_scene="res://Scenes/Main/Lobby.tscn"
 config/icon="res://icon.png"
 

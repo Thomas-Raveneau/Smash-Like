@@ -12,7 +12,7 @@ func _ready():
 # callback from SceneTree
 func _player_connected(id):
 	var stage = load("res://Scenes/Stages/Stage1/Stage.tscn").instance()
-#	stage.connect("game_finished", self, "_end_game", [], CONNECT_DEFERRED) # connect deferred so we can safely erase it from the callback
+	stage.connect("game_finished", self, "_end_game", [], CONNECT_DEFERRED) # connect deferred so we can safely erase it from the callback
 	
 	get_tree().get_root().add_child(stage)
 	hide()
