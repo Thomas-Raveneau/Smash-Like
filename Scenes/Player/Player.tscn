@@ -1,10 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player/Player.gd" type="Script" id=2]
-[ext_resource path="res://Ressources/Backgrounds/background_0.png" type="Texture" id=3]
-[ext_resource path="res://Ressources/Backgrounds/background_1.png" type="Texture" id=4]
-[ext_resource path="res://Ressources/Backgrounds/background_2.png" type="Texture" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 32 )
@@ -20,37 +17,3 @@ shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_bottom = 700
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="CanvasLayer"]
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="CanvasLayer/ParallaxBackground"]
-position = Vector2( 0, -360 )
-motion_scale = Vector2( 0.2, 0 )
-motion_mirroring = Vector2( 1280, 0 )
-
-[node name="Sprite" type="Sprite" parent="CanvasLayer/ParallaxBackground/ParallaxLayer"]
-position = Vector2( 640, 360 )
-scale = Vector2( 4.44444, 4 )
-texture = ExtResource( 3 )
-
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="CanvasLayer/ParallaxBackground"]
-position = Vector2( 0, -360 )
-motion_scale = Vector2( 0.5, 0 )
-motion_mirroring = Vector2( 1280, 0 )
-
-[node name="Sprite" type="Sprite" parent="CanvasLayer/ParallaxBackground/ParallaxLayer2"]
-position = Vector2( 640, 360 )
-scale = Vector2( 4.44444, 4 )
-texture = ExtResource( 4 )
-
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="CanvasLayer/ParallaxBackground"]
-position = Vector2( 0, -360 )
-motion_scale = Vector2( 0.8, 0 )
-motion_mirroring = Vector2( 1280, 0 )
-
-[node name="Sprite" type="Sprite" parent="CanvasLayer/ParallaxBackground/ParallaxLayer3"]
-position = Vector2( 640, 360 )
-scale = Vector2( 4.44444, 4 )
-texture = ExtResource( 5 )
