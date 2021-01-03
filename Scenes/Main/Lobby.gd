@@ -11,6 +11,7 @@ func _ready():
 
 func _player_connected(id):
 	var stage = load("res://Scenes/Stages/Stage1/Stage.tscn").instance()
+	
 	get_tree().get_root().add_child(stage)
 	hide()
 
@@ -38,10 +39,10 @@ func _server_disconnected():
 
 func _end_game(with_error=""):
 	if (has_node("/root/Stage")):
-		get_node("/root/Stage").queue_free()
+		get_node("/root/Stage").free()
 		show()
 	
-	get_tree().set_network_peer(null)
+	get_tree().call_deferred("set_network_peer", null)
 	
 	get_node("Panel/Join").set_disabled(false)
 	get_node("Panel/Host").set_disabled(false)

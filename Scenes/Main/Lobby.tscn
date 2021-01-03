@@ -28,20 +28,16 @@ font_data = ExtResource( 2 )
 [node name="Lobby" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 73.0537
-margin_top = 21.3816
-margin_right = 73.0537
-margin_bottom = 21.3816
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Panel" type="Panel" parent="."]
-margin_left = 246.946
-margin_top = 98.6184
-margin_right = 886.946
-margin_bottom = 482.618
+margin_left = 320.0
+margin_top = 96.0
+margin_right = 960.0
+margin_bottom = 480.0
 custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_lock_": true,
