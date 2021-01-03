@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Ressources/Tilesets/ground.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Stages/Stage1/Stage.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Parralax/Background.tscn" type="PackedScene" id=4]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
@@ -44,3 +45,5 @@ position = Vector2( 224, 480 )
 
 [node name="Player2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1032, 480 )
+
+[node name="Background" parent="." instance=ExtResource( 4 )]

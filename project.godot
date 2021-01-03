@@ -45,4 +45,8 @@ jump={
 
 [rendering]
 
+quality/2d/use_nvidia_rect_flicker_workaround=true
+quality/2d/use_pixel_snap=true
+threads/thread_model=2
+quality/filters/use_nearest_mipmap_filter=true
 environment/default_environment="res://default_env.tres"
