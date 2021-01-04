@@ -34,7 +34,6 @@ sync func attack():
 func is_attack_finished():
 	if sprite.animation == "Attack" and sprite.frame + 1 == sprite.frames.get_frame_count("Attack"):
 		attacking = false
-	print (str(sprite.frame) + " : " + str(sprite.frames.get_frame_count("Attack")))
 
 func player_animations():
 	if attacking == true:
