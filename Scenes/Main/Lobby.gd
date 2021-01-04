@@ -14,6 +14,9 @@ func _ready():
 	get_tree().connect("connection_failed", self, "_connected_fail")
 # warning-ignore:return_value_discarded
 	get_tree().connect("server_disconnected", self, "_server_disconnected")
+	$MainMenuMusic.play()
+	
+	
 
 # warning-ignore:unused_argument
 func _player_connected(id):

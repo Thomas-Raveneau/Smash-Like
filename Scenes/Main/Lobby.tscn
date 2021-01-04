@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Ressources/Fonts/04B_30__.TTF" type="DynamicFontData" id=1]
 [ext_resource path="res://Ressources/Fonts/Early GameBoy.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Scenes/Main/Lobby.gd" type="Script" id=3]
+[ext_resource path="res://Ressources/Musics/Menus/Main/Main Menu.wav" type="AudioStream" id=4]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -143,6 +144,9 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="MainMenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
 [connection signal="pressed" from="Panel/Host" to="." method="_on_Host_pressed"]
 [connection signal="pressed" from="Panel/Join" to="." method="_on_Join_pressed"]
 [connection signal="pressed" from="Panel/Test" to="." method="_on_Test_pressed"]
