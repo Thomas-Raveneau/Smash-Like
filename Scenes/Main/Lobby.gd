@@ -22,6 +22,7 @@ func _ready():
 func _player_connected(id):
 	var stage = load("res://Scenes/Stages/Stage1/Stage.tscn").instance()
 	
+	$MainMenuMusic.stop()
 	get_tree().get_root().add_child(stage)
 	hide()
 
@@ -112,4 +113,5 @@ func _on_Test_pressed():
 	var stage = load("res://Scenes/Stages/TestStage/Stage.tscn").instance()
 	
 	get_tree().get_root().add_child(stage)
+	$MainMenuMusic.stop()
 	hide()

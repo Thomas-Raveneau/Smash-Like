@@ -18,7 +18,7 @@ var anim = ""
 puppet var slave_anim = "Idle"
 
 func _ready():
-	sprite.connect("animation_finished", self, "attack_finished")
+	pass
 
 puppet func set_pos_and_motion(p_pos, p_motion):
 	position = p_pos
@@ -31,9 +31,34 @@ sync func attack():
 	anim = "Attack"
 	sprite.play(anim)
 
+func is_attack_finished():
+	if sprite.animation == "Attack" and sprite.frame + 1 == sprite.frames.get_frame_count("Attack"):
+		attacking = false
+	print (str(sprite.frame) + " : " + str(sprite.frames.get_frame_count("Attack")))
 
-func attack_finished():
-	attacking = false
+func player_animations():
+	if attacking == true:
+		return
+
+	var new_anim = "Idle"
+	
+	if linear_vel.x < -SIDING_CHANGE_SPEED:
+		sprite.flip_h = true
+		new_anim = "Run"
+
+	if linear_vel.x > SIDING_CHANGE_SPEED:
+		sprite.flip_h = false
+		new_anim = "Run"
+
+	if !on_floor:
+		if linear_vel.y < 0:
+			new_anim = "Jump"
+		else:
+				new_anim = "Fall"
+	
+	if new_anim != anim:
+		anim = new_anim
+		sprite.play(anim)
 
 func _physics_process(delta):
 	onair_time += delta
@@ -48,7 +73,6 @@ func _physics_process(delta):
 	on_floor = onair_time < MIN_ONAIR_TIME
 
 	if (is_network_master()):
-	# Horizontal Movement
 		var target_speed = 0
 		if Input.is_action_pressed("move_left"):
 			target_speed += -1
@@ -65,28 +89,7 @@ func _physics_process(delta):
 			rpc("attack")
 	
 		rpc_unreliable("set_pos_and_motion", position, linear_vel)
+	if (attacking == true):
+		is_attack_finished()
+	player_animations()
 	
-	var new_anim = "Idle"
-	
-	if on_floor:
-		if linear_vel.x < -SIDING_CHANGE_SPEED:
-			sprite.flip_h = true
-			new_anim = "Run"
-
-		if linear_vel.x > SIDING_CHANGE_SPEED:
-			sprite.flip_h = false
-			new_anim = "Run"
-	else:
-		if linear_vel.x < -SIDING_CHANGE_SPEED:
-			sprite.flip_h = true
-		if linear_vel.x > SIDING_CHANGE_SPEED:
-			sprite.flip_h = false
-
-		if linear_vel.y < 0:
-			new_anim = "Jump"
-		else:
-			new_anim = "Fall"
-	
-	if new_anim != anim and attacking == false:
-		anim = new_anim
-		sprite.play(anim)
